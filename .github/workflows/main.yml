@@ -13,8 +13,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ nishanth1995 }}
-          password: ${{ dckr_pat_aLoVsAxdm5nqa4Mgv_ROPP8Rehc }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_nishanth1995 }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_dckr_pat_aLoVsAxdm5nqa4Mgv_ROPP8Rehc }}
       - name: Build, tag, and push image to DockerHub
         env:
           IMAGE_NAME: my-testimage
