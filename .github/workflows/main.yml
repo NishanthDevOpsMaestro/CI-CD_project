@@ -13,15 +13,14 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.nishanth1995 }}
-          password: ${{ secrets.dckr_pat_aLoVsAxdm5nqa4Mgv_ROPP8Rehc }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build, tag, and push image to DockerHub
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.nishanth1995 }}
-          IMAGE_NAME: my-testimgage
+          IMAGE_NAME: my-testimage
         run: |
-          docker build -t $nishanth1995/$my-testimgage .
-          docker push $nishanth1995/$my-testimgage:latest
+          docker build -t $IMAGE_NAME:latest .
+          docker push $IMAGE_NAME:latest
 
   test:
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: '3.x'
       - name: Install dependencies
